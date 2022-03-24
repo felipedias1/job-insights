@@ -106,7 +106,15 @@ def get_max_salary(path):
     int
         The maximum salary paid out of all job opportunities
     """
-    pass
+    data = read(path)
+    max_salary = []
+    for row in data:
+        try:
+            max_salary.append(int(row["max_salary"]))
+        except ValueError:
+            pass
+
+    return max(max_salary)
 
 
 def get_min_salary(path):
@@ -124,7 +132,23 @@ def get_min_salary(path):
     int
         The minimum salary paid out of all job opportunities
     """
-    pass
+    # Refactoring Function with help of Carlos Mello(Instructor) on monitoring
+    data = read(path)
+    min_salary = []
+    for row in data:
+        try:
+            min_salary.append(int(row["min_salary"]))
+        except ValueError:
+            pass
+
+    # Original Function
+    """ min_salary = [
+        int(job["min_salary"])
+        for job in data
+        if job["min_salary"] != "" #and job["min_salary"] != "invalid"
+    ] """
+
+    return min(min_salary)
 
 
 def matches_salary_range(job, salary):
