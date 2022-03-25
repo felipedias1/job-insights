@@ -205,4 +205,12 @@ def filter_by_salary_range(jobs, salary):
     list
         Jobs whose salary range contains `salary`
     """
-    return []
+    jobs_in_salary_range = []
+    try:
+        for job in jobs:
+            if job["min_salary"] <= salary <= job["max_salary"]:
+                jobs_in_salary_range.append(job)
+    except (ValueError, TypeError):
+        pass
+
+    return jobs_in_salary_range
